@@ -72,7 +72,7 @@ class CommInfoRequestHandlerSpec extends TestKit(
       when(mockCommStorage.getCommIdsFromTarget("test.name")).thenReturn(Option(scala.collection.immutable.IndexedSeq("1", "2")))
 
       actor ! kernelMessage
-      val reply = relayProbe.receiveOne(1.seconds).asInstanceOf[KernelMessage]
+      val reply = relayProbe.receiveOne(2.seconds).asInstanceOf[KernelMessage]
       val commInfo = Json.parse(reply.contentString).as[CommInfoReply]
 
       commInfo.comms.size should equal (2)
